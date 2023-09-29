@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\OrderTypeEnum;
+use App\Enums\OrderStatusEnum;
 
 class CreateOrdersTable extends Migration
 {
@@ -22,8 +24,8 @@ class CreateOrdersTable extends Migration
             $table->foreign('fiat_id')->references('id')->on('fiats')->constrained()->onDelete('cascade');
             $table->decimal('fiat_amount', 12, 2)->unsigned();
             $table->decimal('fiat_price', 12, 2)->unsigned();
-            $table->enum('type', ['buy', 'sell']);
-            $table->enum('status', ['successed', 'pending', 'canceled']);
+            $table->enum('type', OrderTypeEnum::values());
+            $table->enum('status', OrderStatusEnum::values())->default(OrderStatusEnum::Pending->value);
             $table->integer('room_id')->unsigned();
             $table->foreign('room_id')->references('id')->on('rooms')->constrained()->onDelete('cascade');
             $table->integer('user_id')->unsigned();

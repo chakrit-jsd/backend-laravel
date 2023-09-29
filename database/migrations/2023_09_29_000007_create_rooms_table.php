@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\RoomPaymentTimeEnum;
+use App\Enums\RoomTypeEnum;
+use App\Enums\RoomStatusEnum;
 
 class CreateRoomsTable extends Migration
 {
@@ -21,9 +24,9 @@ class CreateRoomsTable extends Migration
             $table->foreign('fiat_id')->references('id')->on('fiats')->constrained()->onDelete('cascade');
             $table->decimal('price', 12, 2)->unsigned();
             $table->decimal('amount', 12, 2)->unsigned();
-            $table->enum('payment_time', [15, 30, 45, 60]);
-            $table->enum('type', ['buy', 'sell']);
-            $table->enum('status', ['active', 'inactive', 'canceled']);
+            $table->enum('payment_time', RoomPaymentTimeEnum::values())->default(RoomPaymentTimeEnum::T15->value);
+            $table->enum('type', RoomTypeEnum::values());
+            $table->enum('status', RoomStatusEnum::values())->default(RoomStatusEnum::Active->value);
             $table->integer('payment_id')->unsigned()->nullable();
             $table->foreign('payment_id')->references('id')->on('payments')->constrained()->onDelete('cascade');
             $table->integer('user_id')->unsigned();
