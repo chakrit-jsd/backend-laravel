@@ -3,6 +3,7 @@
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
+use App\Logging\SimpleFormatter;
 
 return [
 
@@ -98,6 +99,12 @@ return [
 
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
+        ],
+
+        'console' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/consoles.log'),
+            'level' => 'debug'
         ],
     ],
 

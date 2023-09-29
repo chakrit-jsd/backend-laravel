@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Customers extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class Customers extends Migration
      */
     public function up()
     {
-        Scheme::create('customers', function (Blueprint $table) {
-            $table->increment('id')
+        Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
+        });
     }
 
     /**
@@ -24,6 +27,6 @@ class Customers extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('password_resets');
     }
-}
+};
