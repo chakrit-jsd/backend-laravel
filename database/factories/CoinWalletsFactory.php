@@ -2,19 +2,20 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use App\Models\User;
 use App\Models\Coins;
+use App\Models\CoinWallets;
 
-class UserFactory extends Factory
+class CoinWalletsFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = User::class;
+    protected $model = CoinWallets::class;
 
     /**
      * Define the model's default state.
@@ -24,9 +25,8 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail(),
-            'password' => bcrypt('test1234'),
+            'adress' => Str::uuid(36),
+            'amount' => rand(0*100, 100000*100) / 100,
         ];
     }
 }

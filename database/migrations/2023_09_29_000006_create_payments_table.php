@@ -12,7 +12,7 @@ class CreatePaymentsTable extends Migration
      *
      * @return void
      */
-    // ['BBL', 'KBank', 'KTB', 'TTB', 'SCB']
+    //
     public function up()
     {
         Schema::create('payments', function (Blueprint $table) {
