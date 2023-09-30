@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Rooms\RoomController;
+use App\Http\Controllers\Orders\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Auth::routes();
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/rooms', [RoomController::class, 'index'])->name('rooms');
+Route::get('/orders', [OrderController::class, 'index'])->name('orders');
