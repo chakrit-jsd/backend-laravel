@@ -14,7 +14,8 @@ class RoomController extends Controller
 {
     use AuthenticatesUsers;
     //
-
+    protected $coinArr = ['BTC', 'ETH', 'BNB', 'XRP', 'ADA', 'DOGE', 'SOL', 'TRX'];
+    protected $fiatArr = ['THB', 'USD'];
     public function __construct()
     {
         $this->middleware('auth');
@@ -27,16 +28,18 @@ class RoomController extends Controller
         $type = is_null((request()->query('type'))) ? 'buy' : request()->query('type');
         $coin = is_null((request()->query('coin'))) ? 1 : request()->query('coin');
         $order = is_null((request()->query('order'))) ? 'asc' : request()->query('order');
+        $cQuery = Coins::where('symbol', $this->coinArr[$coin])->first();
+        $fQiery =  Fiats::where('symbol', $this->fiatArr[$fiat])->first();
         $rooms = Rooms::where([
-            ['type', '=', $type == 'buy' ? 'sell': 'buy'],
-            ['coin_id', '=', $coin],
-            ['fiat_id', '=', $fiat]
+            ['type', '=', $type],
+            ['coin_id', '=', $cQuery->id],
+            ['fiat_id', '=', $fQiery->id]
         ])->orderBy('price', $order)->paginate(20);
         $rooms->withQueryString()->links();
         return view('rooms.room', [
             'rooms' => $rooms,
-            'coin_name' => Coins::find($coin)->name,
-            'fiat_name' => Fiats::find($fiat)->name,
+            'coin_name' => $cQuery->name,
+            'fiat_name' => $fQiery->name,
         ]);
     }
 

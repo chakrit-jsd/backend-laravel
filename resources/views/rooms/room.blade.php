@@ -16,8 +16,8 @@
             </li>
             <li class="nav-item">
                 <select name="type" class="form-select form-select-sm">
-                    <option value="buy">BUY</option>
-                    <option value="sell">SELL</option>
+                    <option value="buy">Sell</option>
+                    <option value="sell">Buy</option>
                 </select>
             </li>
             <li class="nav-item">
@@ -62,7 +62,7 @@
                 <td>{{ $room->price }}</td>
                 <td>{{ $room->amount }}</td>
                 <td>Bank tranfer</td>
-                <td><a href="{{ route('orders') }}">{{ $room->type->value }}</a></td>
+                <td><a href="{{ route('orders') }}">{{ $room->type->value == 'buy' ? 'sell': 'buy' }}</a></td>
                 {{-- <td>{{ $room->type->value }}</td>
                 <td>{{ $room->coins->symbol }}</td> --}}
             </tr>
