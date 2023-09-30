@@ -22,9 +22,8 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        $this->command->info('Seeder Users');
-        $batch = User::factory(1000)->sequence(
-            fn (Sequence $sequence) => ['email' => "ftest0000$sequence->index@gmail.com"],
+        $batch = User::factory(100)->sequence(
+            fn (Sequence $sequence) => ['email' => "test$sequence->index@gmail.com"],
         )->has(Payments::factory()->state(
             function (array $attributes, User $user) {
                 return ['account_name' => $user->name];
@@ -76,12 +75,5 @@ class UsersSeeder extends Seeder
             }
 
         }
-        // $req = new Client(['headers' => ['X-CoinAPI-Key' => 'AF8CE943-3925-4BE7-B78E-D1D6C6C4E02B']]);
-
-        // $res = $req->request('GET', 'https://rest.coinapi.io/v1/exchangerate/TRX/USD')->getBody();
-        // print_r(json_decode($req->request('GET', "https://rest.coinapi.io/v1/exchangerate/BTC/USD")->getBody())->rate);
-        // $coins = CoinWallets::factory()->state(['user_id' => 1, 'coin_id' => 1])->make();
-        // print_r(json_decode($res->getBody()->getContents()));
-        // $this->command->info(json_encode(User::find(29)->coinWallets));
     }
 }
