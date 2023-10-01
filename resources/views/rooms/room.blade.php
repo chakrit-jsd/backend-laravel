@@ -10,8 +10,8 @@
         <form class="nav" action="/rooms?">
             <li class="nav-item">
                 <select name="fiat" class="form-select form-select-sm">
-                    <option value="1">THB</option>
-                    <option value="2">USD</option>
+                    <option value="0">THB</option>
+                    <option value="1">USD</option>
                 </select>
             </li>
             <li class="nav-item">
@@ -22,14 +22,14 @@
             </li>
             <li class="nav-item">
                 <select name="coin" class="form-select form-select-sm">
-                    <option value="1">BTC</option>
-                    <option value="2">ETH</option>
-                    <option value="3">BNB</option>
-                    <option value="4">XRP</option>
-                    <option value="5">ADA</option>
-                    <option value="6">DOGE</option>
-                    <option value="7">SOL</option>
-                    <option value="8">TRX</option>
+                    <option value="0">BTC</option>
+                    <option value="1">ETH</option>
+                    <option value="2">BNB</option>
+                    <option value="3">XRP</option>
+                    <option value="4">ADA</option>
+                    <option value="5">DOGE</option>
+                    <option value="6">SOL</option>
+                    <option value="7">TRX</option>
                 </select>
             </li>
             <li class="nav-item">
